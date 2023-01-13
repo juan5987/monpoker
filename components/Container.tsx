@@ -4,7 +4,7 @@ import Footer from './Footer';
 
 const Container = ({ children }: any) => {
   return (
-    <div>
+    <div className='container'>
       <Navbar />
       {children}
       <Footer />

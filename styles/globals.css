@@ -7,8 +7,16 @@
   text-decoration: none;
   font-family: 'Roboto', sans-serif;
   color: black;
+  color: inherit;
 }
 
 body {
   background-color: rgb(29, 29, 29);
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
