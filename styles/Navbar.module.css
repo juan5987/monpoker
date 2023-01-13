@@ -34,12 +34,22 @@
   font-weight: 900;
   font-size: 1.3rem;
   text-decoration: none;
-  padding-top: 1rem;
-  padding-bottom: 0.5rem;
 }
 
 .element:hover {
   color: red;
+}
+
+.login {
+  background-color: green;
+  color: white;
+  padding: 0.5em 1em;
+  border-radius: 1em;
+}
+
+.login:hover {
+  background-color: rgb(18, 216, 0);
+  color: white;
 }
 
 .listMobile {

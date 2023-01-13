@@ -10,7 +10,7 @@ const Home = () => {
   return (
     <>
       <Head>
-        <title>monPoker</title>
+        <title>MONPOKER</title>
         <meta
           name='description'
           content='Votre gestionnaire pour organiser vos parties de poker'
@@ -77,7 +77,7 @@ const Home = () => {
             <h3 className={styles.featureTitle}>Gestion des tournois</h3>
             <p className={styles.featureDescription}>
               Organiser vos tournois n&apos;aura jamais été aussi simple.
-              Laissez vous guider par notre outil pour pouvoir consultez les
+              Laissez vous guider par notre outil pour pouvoir consulter les
               détails à n&apos;importe quel moment et avoir accès à
               l&apos;historique de vos tournois.
             </p>
@@ -92,11 +92,31 @@ const Home = () => {
             <h3 className={styles.featureTitle}>Timer personnalisé</h3>
             <p className={styles.featureDescription}>
               Un timer qui correspond parfaitement à vos parties de poker
-              puisqu&apos;il est automatiquement paramétré lors de la création
-              de chaque partie. Un clic et c&apos;est parti !
+              puisqu&apos;il est automatiquement paramétré lors du lancement
+              d&apos;un tournoi. Un clic et c&apos;est parti !
             </p>
           </div>
         </section>
+        <span className={styles.about}>Comment utiliser MONPOKER ?</span>
+        <section className={styles.use}>
+          <p className={styles.useText}>
+            MONPOKER a été développé afin d&apos;offrir une expérience
+            utilisateur simple et intuitive. Afin d&apos;avoir accès à toutes
+            les fonctionnalités, vous devrez commencer par créer un compte
+            utilisateur. Cette étape est obligatoire afin de stocker dans notre
+            base de données sécurisée les données liées aux tournois que vous
+            organiserez. Une fois inscrit et connecté, il vous suffit de lancer
+            un de nos outils à partir de la barre de navigation puis de vous
+            laisser guider.
+          </p>
+        </section>
+        <p className={styles.signupText}>
+          MONPOKER est complètement gratuit, alors n&apos;hésitez plus et
+          laissez vous guider !
+        </p>
+        <Link href='/signup' className={styles.signup}>
+          Créer mon compte
+        </Link>
       </main>
     </>
   );

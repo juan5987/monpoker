@@ -24,7 +24,7 @@
 }
 
 .subtitle {
-  color: rgb(240, 240, 240);
+  color: rgb(255, 255, 255);
   text-align: center;
   text-transform: uppercase;
   font-weight: 900;
@@ -33,7 +33,7 @@
 }
 
 .description {
-  color: rgb(240, 240, 240);
+  color: rgb(255, 255, 255);
   text-align: center;
   font-size: 1.4rem;
   font-weight: 700;
@@ -110,7 +110,7 @@
 
 .featureDescription {
   color: white;
-  text-align: justify;
+  text-align: left;
   font-size: 1.2rem;
   padding: 1.5rem;
 }
@@ -121,6 +121,51 @@
   height: 250px;
   object-fit: cover;
   border-radius: 15px 15px 0 0;
+}
+
+.use {
+  background-color: rgb(22, 22, 22);
+  padding: 2rem;
+  margin: 2rem;
+  border-radius: 15px;
+}
+
+.useText {
+  color: white;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.useText:last-child {
+  margin-bottom: 0;
+}
+
+.signupText {
+  font-size: 1.4rem;
+  font-weight: 900;
+  margin: 0 2rem;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.signup {
+  display: block;
+  width: min-content;
+  white-space: nowrap;
+  background-color: rgb(240, 8, 8);
+  border: 5px solid rgb(240, 8, 8);
+  color: white;
+  padding: 0.5em 1em;
+  font-size: 1.5rem;
+  font-weight: 900;
+  border-radius: 15px;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+}
+
+.signup:hover {
+  background-color: white;
+  color: rgb(240, 8, 8);
 }
 
 @media all and (max-width: 1000px) {
