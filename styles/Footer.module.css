@@ -33,3 +33,9 @@
 .copyright {
   color: white;
 }
+
+@media all and (max-width: 900px) {
+  .element::after {
+    content: '';
+  }
+}
