@@ -4,6 +4,7 @@ import styles from '../../styles/CreateTournaement.module.css';
 
 const Create = () => {
   const [stage, setStage] = React.useState(0);
+  const [rebuyChecked, setRebuyChecked] = React.useState(false);
   const [validated, setvalidated] = React.useState(false);
   const [formValues, setFormValues] = React.useState({
     name: 'Mon tournoi',
@@ -13,6 +14,10 @@ const Create = () => {
     nbPlayers: 2,
     startingStack: 1000,
     buyin: 0,
+    rebuy: false,
+    rebuyDuration: '00:00',
+    numberOfRebuy: 1,
+    addon: false,
     comment: '',
   });
 
@@ -25,6 +30,10 @@ const Create = () => {
     nbPlayers: false,
     comment: false,
     time: false,
+    rebuy: false,
+    rebuyDuration: false,
+    numberOfRebuy: false,
+    addon: false,
   });
 
   const handleNext = () => {
@@ -61,6 +70,26 @@ const Create = () => {
     });
   };
 
+  const handleAddRebuy = () => {
+    setFormValues({ ...formValues, rebuy: true });
+    setStage(stage + 1);
+  };
+
+  const handleRemoveRebuy = () => {
+    setFormValues({ ...formValues, rebuy: false });
+    setStage(stage + 1);
+  };
+
+  const handleAddAddon = () => {
+    setFormValues({ ...formValues, addon: true });
+    setStage(stage + 1);
+  };
+
+  const handleRemoveAddon = () => {
+    setFormValues({ ...formValues, addon: false });
+    setStage(stage + 1);
+  };
+
   const handleCreateTournament = () => {};
 
   return (
@@ -69,8 +98,8 @@ const Create = () => {
         <div className={styles.wrapper}>
           <h2 className={styles.title}>Création d&apos;un tournoi</h2>
           <p className={styles.tuto}>
-            Pour créer votre tournoi, compléter chaque champs puis valider
-            jusqu&apos;au récapitulatif.
+            Pour créer votre tournoi, complétez chaque champs jusqu&apos;au
+            récapitulatif.
             <br /> Si vous avez besoin d&apos;aide, vous pouvez cliquer sur le
             point d&apos;interrogation pour obtenir des précisions.
           </p>
@@ -403,6 +432,234 @@ const Create = () => {
                 className={styles.element}
                 style={{ right: stage.toString() + '00vw' }}
               >
+                <span
+                  className={styles.info}
+                  onMouseOver={handleShowInfo}
+                  onMouseLeave={handleHideInfo}
+                  data-info='rebuy'
+                  style={{ marginBottom: '2rem' }}
+                >
+                  ?
+                </span>
+                <div className={styles.labelWrapper}>
+                  <label htmlFor='rebuy' className={styles.label}>
+                    Rebuy autorisé ?
+                  </label>
+                </div>
+
+                {showInfo.rebuy && (
+                  <div className={styles.infoBlock}>
+                    Le rebuy est une période durant laquelle les joueurs
+                    éliminés peuvent revenir dans la partie avec le tapis de
+                    départ du tournoi en payant à nouveau le prix d&apos;entrée.
+                  </div>
+                )}
+                <div className={styles.rebuy}>
+                  <button
+                    className={styles.no}
+                    type='button'
+                    onClick={handleRemoveRebuy}
+                  >
+                    Non
+                  </button>
+                  <button
+                    className={styles.yes}
+                    type='button'
+                    onClick={handleAddRebuy}
+                  >
+                    Oui
+                  </button>
+                </div>
+
+                <button
+                  className={styles.previous}
+                  type='button'
+                  onClick={handlePrevious}
+                >
+                  retour
+                </button>
+              </div>
+              {formValues.rebuy && (
+                <>
+                  <div
+                    className={styles.element}
+                    style={{ right: stage.toString() + '00vw' }}
+                  >
+                    <span
+                      className={styles.info}
+                      onMouseOver={handleShowInfo}
+                      onMouseLeave={handleHideInfo}
+                      data-info='rebuy'
+                      style={{ margin: '1rem auto' }}
+                    >
+                      ?
+                    </span>
+                    <div className={styles.labelWrapper}>
+                      <label htmlFor='rebuy' className={styles.label}>
+                        Durée du rebuy (en heures)
+                      </label>
+                    </div>
+                    {showInfo.rebuy && (
+                      <div
+                        className={styles.infoBlock}
+                        style={{ fontSize: '1.2rem', top: '4rem' }}
+                      >
+                        Le rebuy est une période durant laquelle les joueurs
+                        éliminés peuvent revenir dans la partie avec le tapis de
+                        départ du tournoi en payant à nouveau le prix
+                        d&apos;entrée.
+                        <br />
+                        Vous vous pouvez autoriser un nombre de rebuy limité ou
+                        illimité pendant toute la durée du rebuy.
+                      </div>
+                    )}
+
+                    <input
+                      type='time'
+                      className={styles.input}
+                      id='rebuyDuration'
+                      name='rebuyDuration'
+                      value={formValues.rebuyDuration}
+                      onChange={handleChange}
+                    />
+                    <button
+                      className={styles.next}
+                      type='button'
+                      onClick={handleNext}
+                    >
+                      Suivant
+                    </button>
+                    <button
+                      className={styles.previous}
+                      type='button'
+                      onClick={handlePrevious}
+                    >
+                      retour
+                    </button>
+                  </div>
+                  <div
+                    className={styles.element}
+                    style={{ right: stage.toString() + '00vw' }}
+                  >
+                    <div className={styles.labelWrapper}>
+                      <label htmlFor='numberOfRebuy' className={styles.label}>
+                        Nombre de rebuy
+                      </label>
+                      <span
+                        className={styles.info}
+                        onMouseOver={handleShowInfo}
+                        onMouseLeave={handleHideInfo}
+                        data-info='numberOfRebuy'
+                      >
+                        ?
+                      </span>
+                    </div>
+                    {showInfo.numberOfRebuy && (
+                      <div className={styles.infoBlock}>
+                        Le nombre de fois que les joueurs pourront effectuer un
+                        rebuy. Si illimité, les joueurs pourront effectuer un
+                        rebuy autant de fois qu&apos;ils le souhaitent pendant
+                        la durée du rebuy.
+                      </div>
+                    )}
+                    <label
+                      className={styles.checkboxWrapper}
+                      htmlFor='checkbox'
+                    >
+                      <input
+                        className={styles.checkboxInput}
+                        type='checkbox'
+                        id='checkbox'
+                        onChange={() => setRebuyChecked(!rebuyChecked)}
+                        checked={rebuyChecked}
+                      />
+                      <span className={styles.checkmark}></span>
+                      <span className={styles.checkboxLabel}>Illimité</span>
+                    </label>
+
+                    <input
+                      type='number'
+                      className={styles.input}
+                      id='numberOfRebuy'
+                      name='numberOfRebuy'
+                      value={rebuyChecked ? '' : formValues.numberOfRebuy}
+                      onChange={handleChange}
+                      disabled={rebuyChecked}
+                    />
+                    <button
+                      className={styles.next}
+                      type='button'
+                      onClick={handleNext}
+                    >
+                      Suivant
+                    </button>
+                    <button
+                      className={styles.previous}
+                      type='button'
+                      onClick={handlePrevious}
+                    >
+                      retour
+                    </button>
+                  </div>
+                  <div
+                    className={styles.element}
+                    style={{ right: stage.toString() + '00vw' }}
+                  >
+                    <span
+                      className={styles.info}
+                      onMouseOver={handleShowInfo}
+                      onMouseLeave={handleHideInfo}
+                      data-info='addon'
+                      style={{ marginBottom: '2rem' }}
+                    >
+                      ?
+                    </span>
+                    <div className={styles.labelWrapper}>
+                      <label htmlFor='addon' className={styles.label}>
+                        Add-on autorisé ?
+                      </label>
+                    </div>
+
+                    {showInfo.addon && (
+                      <div className={styles.infoBlock}>
+                        Lorsque la période de rebuy est terminée, les joueurs
+                        pourront choisir de payer le montant du buy-in pour
+                        obtenir l&apos;équivalent du tapis de départ en jetons
+                        (une seule fois).
+                      </div>
+                    )}
+                    <div className={styles.rebuy}>
+                      <button
+                        className={styles.no}
+                        type='button'
+                        onClick={handleRemoveAddon}
+                      >
+                        Non
+                      </button>
+                      <button
+                        className={styles.yes}
+                        type='button'
+                        onClick={handleAddAddon}
+                      >
+                        Oui
+                      </button>
+                    </div>
+
+                    <button
+                      className={styles.previous}
+                      type='button'
+                      onClick={handlePrevious}
+                    >
+                      retour
+                    </button>
+                  </div>
+                </>
+              )}
+
+              <div
+                className={styles.element}
+                style={{ right: stage.toString() + '00vw' }}
+              >
                 <div className={styles.labelWrapper}>
                   <label htmlFor='comment' className={styles.label}>
                     Commentaire
@@ -499,6 +756,38 @@ const Create = () => {
                 {formValues.buyin + ' €'}
               </span>
             </div>
+            <div className={styles.recapElement}>
+              <span className={styles.recapElementName}>Rebuy</span>
+              <span className={styles.recapElementValue}>
+                {formValues.rebuy ? 'oui' : 'non'}
+              </span>
+            </div>
+            {formValues.rebuy && (
+              <>
+                <div className={styles.recapElement}>
+                  <span className={styles.recapElementName}>
+                    Durée du rebuy (en heures)
+                  </span>
+                  <span className={styles.recapElementValue}>
+                    {formValues.rebuyDuration}
+                  </span>
+                </div>
+                <div className={styles.recapElement}>
+                  <span className={styles.recapElementName}>
+                    Nombre de rebuy
+                  </span>
+                  <span className={styles.recapElementValue}>
+                    {rebuyChecked ? 'illimité' : formValues.numberOfRebuy}
+                  </span>
+                </div>
+                <div className={styles.recapElement}>
+                  <span className={styles.recapElementName}>Add-on</span>
+                  <span className={styles.recapElementValue}>
+                    {formValues.addon ? 'oui' : 'non'}
+                  </span>
+                </div>
+              </>
+            )}
             <div className={styles.recapElement}>
               <span className={styles.recapElementName}>Commentaire</span>
               <span className={styles.recapElementValue}>
