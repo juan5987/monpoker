@@ -165,9 +165,6 @@
   align-items: center;
 }
 
-.tournamentTitle {
-}
-
 @media all and (max-width: 900px) {
   .filterBar {
     justify-content: space-between;
