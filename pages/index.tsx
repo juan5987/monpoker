@@ -9,15 +9,6 @@ import styles from '../styles/Home.module.css';
 const Home = () => {
   return (
     <>
-      <Head>
-        <title>MONPOKER</title>
-        <meta
-          name='description'
-          content='Votre gestionnaire pour organiser vos parties de poker'
-        />
-        <meta name='viewport' content='width=device-width, initial-scale=1' />
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
       <main className={styles.main}>
         <div className={styles.banner}>
           <h1 className={styles.title}>monpoker</h1>
