@@ -48,7 +48,10 @@ const Navbar = () => {
           <span></span>
         </div>
 
-        <ul className={isMenuOpen ? styles.listMobile : styles.listMobileClose}>
+        <ul
+          className={isMenuOpen ? styles.listMobile : styles.listMobileClose}
+          onClick={() => setIsMenuopen(false)}
+        >
           <li className={styles.li}>
             <Link href='/' className={styles.elementMobile}>
               accueil

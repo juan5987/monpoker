@@ -36,8 +36,6 @@
   padding: 0.5em 1em;
   border-radius: 1.2rem;
   cursor: pointer;
-  position: absolute;
-  right: 0;
 }
 
 .add:hover {
@@ -90,10 +88,15 @@
 .filterBar {
   width: 100%;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   margin-top: 1rem;
   color: rgb(48, 48, 48);
   position: relative;
+}
+
+.filterElements {
+  display: flex;
 }
 
 .filterElement {
@@ -168,5 +171,14 @@
 @media all and (max-width: 900px) {
   .filterBar {
     justify-content: space-between;
+    flex-direction: column;
+  }
+
+  .add {
+    margin-top: 1rem;
+  }
+
+  .tournaments {
+    background-position-x: center;
   }
 }

@@ -48,43 +48,44 @@ const Tournaments = () => {
           <h2 className={styles.title}>Mes tournois</h2>
         </div>
         <div className={styles.filterBar}>
-          <div className={styles.filterElement}>
-            <label className={styles.filterLabel} htmlFor='filter'>
-              Trier par:
-            </label>
-            <select className={styles.filterSelect} name='filter' id='filter'>
-              <option className={styles.filterOption} value='date'>
-                date
-              </option>
-              <option className={styles.filterOption} value='name'>
-                nom
-              </option>
-              <option className={styles.filterOption} value='status'>
-                statut
-              </option>
-            </select>
+          <div className={styles.filterElements}>
+            <div className={styles.filterElement}>
+              <label className={styles.filterLabel} htmlFor='filter'>
+                Trier par:
+              </label>
+              <select className={styles.filterSelect} name='filter' id='filter'>
+                <option className={styles.filterOption} value='date'>
+                  date
+                </option>
+                <option className={styles.filterOption} value='name'>
+                  nom
+                </option>
+                <option className={styles.filterOption} value='status'>
+                  statut
+                </option>
+              </select>
+            </div>
+            <div className={styles.filterElement}>
+              <label className={styles.filterLabel} htmlFor='order'>
+                Ordre:
+              </label>
+              <select className={styles.filterSelect} name='order' id='order'>
+                <option className={styles.filterOption} value='ascending'>
+                  croissant
+                </option>
+                <option className={styles.filterOption} value='descending'>
+                  décroissant
+                </option>
+              </select>
+            </div>
           </div>
-          <div className={styles.filterElement}>
-            <label className={styles.filterLabel} htmlFor='order'>
-              Ordre:
-            </label>
-            <select className={styles.filterSelect} name='order' id='order'>
-              <option className={styles.filterOption} value='ascending'>
-                croissant
-              </option>
-              <option className={styles.filterOption} value='descending'>
-                décroissant
-              </option>
-            </select>
-          </div>
+
           <Link href='/tournament/create' className={styles.add}>
             <div className={styles.addButton}>
               <div className={styles.addButtonBar}></div>
               <div className={styles.addButtonBar}></div>
             </div>
-            <div href='/tournament/create' className={styles.addText}>
-              Créer un tournoi
-            </div>
+            <div className={styles.addText}>Créer un tournoi</div>
           </Link>
         </div>
         {tournaments.length > 0 ? (
