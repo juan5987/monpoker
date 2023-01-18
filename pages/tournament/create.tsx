@@ -12,17 +12,17 @@ const Create = () => {
     time: '00:00',
     location: '',
     nbPlayers: 2,
-    startingStack: 1000,
     buyin: 0,
     rebuy: false,
     rebuyDuration: '00:00',
     numberOfRebuy: 1,
     addon: false,
+    deep: 100,
+    speed: 10,
     comment: '',
   });
 
   const [showInfo, setShowInfo] = React.useState({
-    startingStack: false,
     buyin: false,
     name: false,
     date: false,
@@ -34,7 +34,12 @@ const Create = () => {
     rebuyDuration: false,
     numberOfRebuy: false,
     addon: false,
+    chips: false,
+    deep: false,
+    speed: false,
   });
+
+  const [chips, setChips] = React.useState([]);
 
   const handleNext = () => {
     setStage(stage + 1);
@@ -340,53 +345,6 @@ const Create = () => {
                 style={{ right: stage.toString() + '00vw' }}
               >
                 <div className={styles.labelWrapper}>
-                  <label htmlFor='startingStack' className={styles.label}>
-                    Tapis de départ
-                  </label>
-                  <span
-                    className={styles.info}
-                    onMouseOver={handleShowInfo}
-                    onMouseLeave={handleHideInfo}
-                    data-info='startingStack'
-                  >
-                    ?
-                  </span>
-                </div>
-                {showInfo.startingStack && (
-                  <div className={styles.infoBlock}>
-                    Le tapis de départ correspond au montant de jetons que
-                    chaque joueur possèdera au début de la partie.
-                  </div>
-                )}
-
-                <input
-                  type='number'
-                  className={styles.input}
-                  id='startingStack'
-                  name='startingStack'
-                  value={formValues.startingStack}
-                  onChange={handleChange}
-                />
-                <button
-                  className={styles.next}
-                  type='button'
-                  onClick={handleNext}
-                >
-                  Suivant
-                </button>
-                <button
-                  className={styles.previous}
-                  type='button'
-                  onClick={handlePrevious}
-                >
-                  retour
-                </button>
-              </div>
-              <div
-                className={styles.element}
-                style={{ right: stage.toString() + '00vw' }}
-              >
-                <div className={styles.labelWrapper}>
                   <label htmlFor='buyin' className={styles.label}>
                     Prix d&apos;entrée
                   </label>
@@ -411,6 +369,107 @@ const Create = () => {
                   id='buyin'
                   name='buyin'
                   value={formValues.buyin}
+                  onChange={handleChange}
+                />
+                <button
+                  className={styles.next}
+                  type='button'
+                  onClick={handleNext}
+                >
+                  Suivant
+                </button>
+                <button
+                  className={styles.previous}
+                  type='button'
+                  onClick={handlePrevious}
+                >
+                  retour
+                </button>
+              </div>
+              <div
+                className={styles.element}
+                style={{ right: stage.toString() + '00vw' }}
+              >
+                <div className={styles.labelWrapper}>
+                  <label htmlFor='deep' className={styles.label}>
+                    Profondeur
+                  </label>
+                  <span
+                    className={styles.info}
+                    onMouseOver={handleShowInfo}
+                    onMouseLeave={handleHideInfo}
+                    data-info='deep'
+                  >
+                    ?
+                  </span>
+                </div>
+                {showInfo.deep && (
+                  <div className={styles.infoBlock}>
+                    La profondeur d&apos;un tournoi correspond au nombre de
+                    blinds que vous aurez en début de partie. Un tournoi
+                    deepstack débutera avec 150 à 200 blinds en moyenne alors
+                    qu&apos;un tournoi turbo débutera avec 20 à 60 blinds en
+                    moyenne.
+                  </div>
+                )}
+                <span className={styles.sublabel}>Nombre de blinds</span>
+
+                <input
+                  type='number'
+                  className={styles.input}
+                  id='deep'
+                  name='deep'
+                  value={formValues.deep}
+                  onChange={handleChange}
+                />
+                <button
+                  className={styles.next}
+                  type='button'
+                  onClick={handleNext}
+                >
+                  Suivant
+                </button>
+                <button
+                  className={styles.previous}
+                  type='button'
+                  onClick={handlePrevious}
+                >
+                  retour
+                </button>
+              </div>
+              <div
+                className={styles.element}
+                style={{ right: stage.toString() + '00vw' }}
+              >
+                <div className={styles.labelWrapper}>
+                  <label htmlFor='speed' className={styles.label}>
+                    Vitesse
+                  </label>
+                  <span
+                    className={styles.info}
+                    onMouseOver={handleShowInfo}
+                    onMouseLeave={handleHideInfo}
+                    data-info='speed'
+                  >
+                    ?
+                  </span>
+                </div>
+                {showInfo.speed && (
+                  <div className={styles.infoBlock}>
+                    La vitesse d&apos;un tournoi correspond au temps entre
+                    chaque augmentation des blinds. Un tournoi classique
+                    tournera autour de 10 minutes alors qu&apos;un tournoi lent
+                    sera autour de 20 minutes ou plus.
+                  </div>
+                )}
+                <span className={styles.sublabel}>Minutes</span>
+
+                <input
+                  type='number'
+                  className={styles.input}
+                  id='speed'
+                  name='speed'
+                  value={formValues.speed}
                   onChange={handleChange}
                 />
                 <button
@@ -743,17 +802,25 @@ const Create = () => {
               </span>
             </div>
             <div className={styles.recapElement}>
-              <span className={styles.recapElementName}>Tapis de départ</span>
-              <span className={styles.recapElementValue}>
-                {formValues.startingStack}
-              </span>
-            </div>
-            <div className={styles.recapElement}>
               <span className={styles.recapElementName}>
                 Prix d&apos;entrée
               </span>
               <span className={styles.recapElementValue}>
                 {formValues.buyin + ' €'}
+              </span>
+            </div>
+            <div className={styles.recapElement}>
+              <span className={styles.recapElementName}>Profondeur</span>
+              <span className={styles.recapElementValue}>
+                {formValues.deep + ' blinds'}
+              </span>
+            </div>
+            <div className={styles.recapElement}>
+              <span className={styles.recapElementName}>
+                Augmentation des blinds
+              </span>
+              <span className={styles.recapElementValue}>
+                {formValues.speed + ' minutes'}
               </span>
             </div>
             <div className={styles.recapElement}>
